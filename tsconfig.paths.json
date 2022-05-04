@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "moduleResolution": "node",
+    "paths": {
+      "components/*": ["./src/components/*"],
+      "pages/*": ["./src/Pages/*"],
+      "utils/*": ["./src/utils/*"],
+      "lib/*": ["./src/lib/*"],
+      "features/*": ["./src/features/*"],
+      "providers/*": ["./src/providers/*"],
+      "hooks/*": ["./src/hooks/*"],
+      "app/*": ["./src/app/*"],
+      "icons/*": ["./src/icons/*"],
+      "assets/*": ["./src/assets/*"],
+      "constants/*": ["./src/constants/*"],
+      "mockData/*": ["./src/mockData/*"]
+    }
+  },
+  "include": ["./src/**/*", "./tests/**/*"]
+}
