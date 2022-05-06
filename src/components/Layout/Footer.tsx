@@ -10,6 +10,9 @@ import {
 import MarkdownParser from "components/Reusable/MarkdownParser";
 import { ReactNode } from "react";
 import SocialList from "components/Reusable/SocialList";
+import { useContext } from "react";
+import { StrapiContext } from "providers/StrapiPublicProvider";
+import { getStrapiMedia } from "lib/theme/media";
 
 export type FooterPropsType = {
   text?: string;
@@ -44,16 +47,18 @@ const FooterTitle: React.FC<{ children: ReactNode; sx?: SxProps }> = ({
 };
 
 const Footer: React.FC<FooterPropsType> = ({ socialLinks, text }) => {
+  const { logo, footerText, socials } = useContext(StrapiContext);
+
   // *************** RENDER *************** //
   return (
-    <Box component="footer" sx={{ pb: [4, 4, 6] }}>
+    <Box component="footer" sx={{ pb: [4, 4, 6], mt: "auto" }}>
       <Container>
         <Divider sx={{ mb: [4, 4, 6] }} />
         <Grid container rowSpacing={[2, 2, 0]}>
           <Grid item xs={12} sm={6} md={4}>
             <Box>
               <img
-                src={Logo}
+                src={logo ? getStrapiMedia(logo) : Logo}
                 alt="Logo"
                 style={{ width: "100%", height: "auto", maxWidth: "200px" }}
               />
@@ -68,7 +73,7 @@ const Footer: React.FC<FooterPropsType> = ({ socialLinks, text }) => {
               }}
             >{`© ${getYearsValue()} by Perseusfintech.com`}</Typography>
           </Grid>
-          {text && (
+          {footerText && (
             <Grid item xs={12} sm={6} md={4}>
               <FooterTitle>Contact</FooterTitle>
               <Box
@@ -77,11 +82,11 @@ const Footer: React.FC<FooterPropsType> = ({ socialLinks, text }) => {
                   fontWeight: 300,
                 }}
               >
-                <MarkdownParser>{text}</MarkdownParser>
+                <MarkdownParser>{footerText}</MarkdownParser>
               </Box>
             </Grid>
           )}
-          {socialLinks && (
+          {socials && (
             <Grid item xs={12} sm={6} md={4}>
               <Box
                 sx={{
@@ -89,7 +94,7 @@ const Footer: React.FC<FooterPropsType> = ({ socialLinks, text }) => {
                 }}
               >
                 <FooterTitle>Social media</FooterTitle>
-                <SocialList {...socialLinks} />
+                <SocialList {...socials} />
               </Box>
             </Grid>
           )}

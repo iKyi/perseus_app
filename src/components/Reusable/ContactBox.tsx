@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { SxProps } from "@mui/material";
 import SectionHeader from "./SectionHeader";
-import contactBg from "assets/images/contactBox/background.png";
+// import contactBg from "assets/images/contactBox/background.png";
 import { sectionMarginBottom } from "constants/styleConstants";
 import ISectionHeaderStrapi from "utils/types/ISectionHeader";
 
@@ -62,8 +62,9 @@ const ContactBox: React.FC<ContactBoxPropsType> = ({ sx, header }) => {
       sx={{
         px: [5, 5, 12],
         py: [3, 3, 7],
-        background: `rgba(0,0,0,0.1), url('${contactBg}')`,
-        backgroundBlendMode: "darken",
+        // background: `url('${contactBg}'), rgba(0,0,0,0.3)`,
+        backgroundImage:
+          "linear-gradient(30.91deg, rgba(143, 60, 221, 0.10) 1.01%, rgba(0,0,0,0.3) 100%)",
         border: "1px solid",
         borderImageSlice: 1,
         borderImageSource:

@@ -2,16 +2,22 @@ import Logo from "assets/images/logo_png.png";
 import {
   Box,
   Button,
+  CardActionArea,
   Drawer,
   IconButton,
   List,
   ListItem,
-  Stack,
+  useMediaQuery,
 } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { MenuOpenOutlined } from "@mui/icons-material";
-import { useNavigate, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import WalletLoginButtonTheme from "components/Reusable/WalletLoginButtonTheme";
+import { styled, useTheme } from "@mui/system";
+import { StrapiContext } from "providers/StrapiPublicProvider";
+import { getStrapiMedia } from "lib/theme/media";
+import SocialList from "components/Reusable/SocialList";
+import useScrollPosition from "hooks/useScrollPosition";
 
 export interface IHeaderLink {
   name: string;
@@ -32,8 +38,8 @@ export const NavLinks: IHeaderLink[] = [
     url: "/nfts",
   },
   {
-    name: "PROJECTS",
-    url: "/projects",
+    name: "PORTFOLIO",
+    url: "/portfolio",
   },
   {
     name: "ABOUT US",
@@ -45,25 +51,31 @@ export const NavLinks: IHeaderLink[] = [
   },
 ];
 
+const StyledMiddleNavLink = styled(NavLink)(({ theme }) => ({
+  "&:not(:last-of-type)": {
+    marginRight: theme.spacing(2),
+  },
+  textDecoration: "none",
+}));
+
 export type HeaderPropsType = {};
 
 const lateralWidthStyle = {
-  width: [100, 100, 200],
+  width: [100, 100, 250],
   flex: [1, 1, "initial"],
 };
 
 const Header: React.FC<HeaderPropsType> = () => {
+  const theme = useTheme();
+  const mobile = useMediaQuery(theme.breakpoints.down("md"));
+  const globalCtx = useContext(StrapiContext);
+  const scrollPosition = useScrollPosition();
+
+  const { logo: strapiLogo, socials } = globalCtx;
+
   const [mobileOpen, setMobileOpen] = useState(false);
-  const navigate = useNavigate();
 
-  const { pathname } = useLocation();
-
-  const onTabChange = (
-    event: React.SyntheticEvent<Element, Event>,
-    value: any
-  ) => {
-    console.log(event, value);
-  };
+  const isScrolledDown = scrollPosition > 100;
 
   // *************** RENDER *************** //
   return (
@@ -71,10 +83,21 @@ const Header: React.FC<HeaderPropsType> = () => {
       <Box
         component="header"
         sx={{
+          transition: "all .2s",
           display: "flex",
           alignItems: "center",
-          py: [2.5, 2.5, 4],
-          px: [0.2, 0.2, 1.5],
+          py: isScrolledDown ? [1.5, 1.5, 1.8] : [2.5, 2.5, 4],
+          px: [1, 1, 1.5],
+          width: 1200,
+          maxWidth: "100%",
+          position: "fixed",
+          top: 0,
+          left: "50%",
+          transform: "translateX(-50%)",
+          zIndex: 3,
+          backdropFilter: isScrolledDown
+            ? "blur(8px) grayscale(0.3)"
+            : undefined,
         }}
       >
         <Box
@@ -84,15 +107,17 @@ const Header: React.FC<HeaderPropsType> = () => {
             alignItems: "center",
           }}
         >
-          <img
-            src={Logo}
-            alt="Perseus logo"
-            style={{
-              width: "100%",
-              height: "auto",
-              maxWidth: 160,
-            }}
-          />
+          <CardActionArea component={NavLink} to="/" sx={{ width: "auto" }}>
+            <img
+              src={strapiLogo ? getStrapiMedia(strapiLogo) : Logo}
+              alt="Perseus logo"
+              style={{
+                width: "100%",
+                height: "auto",
+                maxWidth: 160,
+              }}
+            />
+          </CardActionArea>
         </Box>
         <Box
           sx={{
@@ -100,45 +125,71 @@ const Header: React.FC<HeaderPropsType> = () => {
             display: ["none", "none", "block"],
           }}
         >
-          {/* <Stack direction={"row"} justifyContent="center"> */}
-          <TabsContext value={pathname}>
-            <Tabs onChange={onTabChange}>
-              {NavLinks.map((item, index) => {
-                return <Tab label={item.name} />;
-              })}
-            </Tabs>
-          </TabsContext>
-
-          {/* </Stack> */}
-          {/* <NavLink key={item.url} to={item.url}>
-                {({ isActive }) => {
-                  return (
-                    <Button
-                      sx={{
-                        textTransform: "uppercase",
-                        color: "#fff",
-                        fontWeight: "600",
-                        fontSize: ["0.85rem", "0.85rem", "0.9rem"],
-                        "&:hover": {
-                          background:
-                            "linear-gradient(103.91deg, #8F3CDD 21.01%, rgba(48, 129, 237, 0.8) 100%)",
-                          backgroundClip: "text",
-                          textFillColor: "transparent",
-                        },
-                      }}
-                    >
-                      {item.name}
-                    </Button>
-                  );
-                }}
-              </NavLink> */}
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {NavLinks.map((item) => {
+              return (
+                <StyledMiddleNavLink key={item.url} to={item.url}>
+                  {({ isActive }) => {
+                    return (
+                      <Button
+                        sx={{
+                          textTransform: "uppercase",
+                          color: "#fff",
+                          fontWeight: "400",
+                          fontSize: ["0.85rem", "0.85rem", "0.9rem"],
+                          borderBottom: "2px solid",
+                          borderRadius: 0,
+                          paddingLeft: 0,
+                          paddingRight: 0,
+                          minWidth: 0,
+                          borderColor: isActive
+                            ? "primary.main"
+                            : "transparent",
+                          background: isActive
+                            ? "linear-gradient(103.91deg, #8F3CDD 21.01%, rgba(48, 129, 237, 0.8) 100%)"
+                            : undefined,
+                          backgroundClip: isActive ? "text" : undefined,
+                          textFillColor: isActive ? "transparent" : undefined,
+                          "&:hover": {
+                            background:
+                              "linear-gradient(103.91deg, #8F3CDD 21.01%, rgba(48, 129, 237, 0.8) 100%)",
+                            backgroundClip: "text",
+                            textFillColor: "transparent",
+                          },
+                        }}
+                      >
+                        {item.name}
+                      </Button>
+                    );
+                  }}
+                </StyledMiddleNavLink>
+              );
+            })}
+          </Box>
         </Box>
         <Box
           sx={{
             ...lateralWidthStyle,
             textAlign: "right",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-end",
           }}
         >
+          {socials && !mobile && (
+            <SocialList
+              twitter={socials.twitter}
+              discord={socials.discord}
+              sx={{ display: "inline-flex", mr: 1.5 }}
+            />
+          )}
           <WalletLoginButtonTheme />
           <IconButton
             sx={{
@@ -159,27 +210,43 @@ const Header: React.FC<HeaderPropsType> = () => {
         <List>
           {NavLinks.map((item) => (
             <ListItem key={item.url}>
-              <Button
+              <NavLink
+                to={item.url}
                 onClick={() => {
-                  navigate(item.url);
                   setMobileOpen(false);
                 }}
-                sx={{
-                  textTransform: "uppercase",
-                  color: "#fff",
-                  fontWeight: "600",
-                  fontSize: ["0.85rem", "0.85rem", "0.9rem"],
-                  "&:hover": {
-                    background:
-                      "linear-gradient(103.91deg, #8F3CDD 21.01%, rgba(48, 129, 237, 0.8) 100%)",
-                    backgroundClip: "text",
-                    textFillColor: "transparent",
-                  },
+                style={{
+                  textDecoration: "none",
+                  textAlign: "left",
+                  display: "flex",
+                  alignItems: "center",
+                  width: "100%",
                 }}
-                key={item.url}
               >
-                {item.name}
-              </Button>
+                {({ isActive }) => {
+                  return (
+                    <Button
+                      fullWidth
+                      sx={{
+                        textTransform: "uppercase",
+                        fontWeight: "600",
+                        fontSize: ["0.85rem", "0.85rem", "0.9rem"],
+                        color: isActive ? "primary.main" : "#fff",
+                        textAlign: "left!important" as "left",
+                        justifyContent: "flex-start",
+                        "&:hover": {
+                          background:
+                            "linear-gradient(103.91deg, #8F3CDD 21.01%, rgba(48, 129, 237, 0.8) 100%)",
+                          backgroundClip: "text",
+                          textFillColor: "transparent",
+                        },
+                      }}
+                    >
+                      {item.name}
+                    </Button>
+                  );
+                }}
+              </NavLink>
             </ListItem>
           ))}
         </List>

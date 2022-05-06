@@ -7,18 +7,24 @@ import PerseusThemeProvider from "./lib/theme";
 import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter } from "react-router-dom";
 import WalletProviderWrapper from "providers/WalletProvider";
+import StrapiPublicProvider from "providers/StrapiPublicProvider";
+import StoreProvider from "providers/StoreProvider";
 
 ReactDOM.render(
   <React.StrictMode>
-    <HelmetProvider>
-      <WalletProviderWrapper>
-        <BrowserRouter>
-          <PerseusThemeProvider>
-            <App />
-          </PerseusThemeProvider>
-        </BrowserRouter>
-      </WalletProviderWrapper>
-    </HelmetProvider>
+    <StoreProvider>
+      <HelmetProvider>
+        <StrapiPublicProvider>
+          <WalletProviderWrapper>
+            <BrowserRouter>
+              <PerseusThemeProvider>
+                <App />
+              </PerseusThemeProvider>
+            </BrowserRouter>
+          </WalletProviderWrapper>
+        </StrapiPublicProvider>
+      </HelmetProvider>
+    </StoreProvider>
   </React.StrictMode>,
   document.getElementById("root") as HTMLElement
 );

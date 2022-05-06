@@ -1,5 +1,6 @@
 import { Typography, SxProps } from "@mui/material";
 import { Box } from "@mui/system";
+import MarkdownParser from "./MarkdownParser";
 
 export type SectionHeaderPropsType = {
   preTitle?: string;
@@ -59,7 +60,7 @@ const SectionHeader: React.FC<SectionHeaderPropsType> = ({
             m: 0,
           }}
         >
-          {description}
+          <MarkdownParser>{description}</MarkdownParser>
         </Typography>
       )}
     </Box>

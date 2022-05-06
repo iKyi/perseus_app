@@ -1,5 +1,6 @@
 import { IconButton, Stack, Link, Theme, SxProps } from "@mui/material";
 import { Twitter, LinkedIn, Facebook } from "@mui/icons-material";
+import DiscordIcon from "components/Icons/DiscordIcon";
 
 const SocialIconButton: React.FC<{
   children: any;
@@ -11,8 +12,8 @@ const SocialIconButton: React.FC<{
       href={url}
       sx={{
         fontSize: "1.4rem",
-        width: 40,
-        height: 40,
+        width: 30,
+        height: 30,
         color: "secondary.contrastText",
         borderRadius: 0,
         transition: "all .2s",
@@ -33,6 +34,7 @@ export type SocialListPropsType = {
   facebook?: string;
   twitter?: string;
   linkedin?: string;
+  discord?: string;
   sx?: SxProps<Theme>;
 };
 
@@ -40,6 +42,7 @@ const SocialList: React.VFC<SocialListPropsType> = ({
   facebook,
   twitter,
   linkedin,
+  discord,
   sx: importedSx,
 }) => {
   // *************** RENDER *************** //
@@ -65,6 +68,11 @@ const SocialList: React.VFC<SocialListPropsType> = ({
       {linkedin && (
         <SocialIconButton url={linkedin}>
           <LinkedIn color="inherit" fontSize="inherit" />
+        </SocialIconButton>
+      )}
+      {discord && (
+        <SocialIconButton url={discord}>
+          <DiscordIcon color="inherit" fontSize="inherit" />
         </SocialIconButton>
       )}
     </Stack>
