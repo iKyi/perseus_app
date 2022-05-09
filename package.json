@@ -6,6 +6,7 @@
     "@civic/solana-gateway-react": "^0.4.13",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
+    "@formspree/react": "^2.2.5",
     "@hookform/resolvers": "^2.8.8",
     "@identity.com/solana-gateway-ts": "^0.8.1",
     "@mui/icons-material": "^5.6.2",
