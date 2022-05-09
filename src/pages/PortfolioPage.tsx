@@ -2,6 +2,7 @@ import { Container } from "@mui/material";
 import CryptocurrenciesSection from "components/Portfolio/CryptocurrenciesSection";
 import ProjectsSection from "components/Portfolio/ProjectsSection";
 import LastUpdatedBox from "components/Reusable/LastUpdatedBox";
+import PageBgHeader from "components/Reusable/PageBgHeader";
 import TopFillerBox from "components/Reusable/TopFillerBox";
 import usePageData from "hooks/usePageData";
 
@@ -10,13 +11,14 @@ export type PortfolioPagePropsType = {
 };
 
 const PortfolioPage: React.FC<PortfolioPagePropsType> = ({ children }) => {
-  const { SeoComponent } = usePageData("portfolio-page");
-
+  const { SeoComponent, pageData } = usePageData("portfolio-page");
+  const { introBoxHeader } = pageData ?? {};
   // *************** RENDER *************** //
   return (
     <>
       {SeoComponent}
       <TopFillerBox />
+      <PageBgHeader {...introBoxHeader} />
       <Container>
         <ProjectsSection />
         <CryptocurrenciesSection />

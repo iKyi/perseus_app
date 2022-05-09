@@ -110,31 +110,39 @@ const MileStonesListings: React.FC<MileStonesListingsPropsType> = ({
 
   // *************** RENDER *************** //
   return (
-    <Stepper
-      alternativeLabel
-      activeStep={lastActiveItem}
-      connector={isMobile ? undefined : <ColorlibConnector />}
-      orientation={isMobile ? "vertical" : "horizontal"}
+    <Box
+      sx={{
+        margin: "0 auto",
+        maxWidth: isMobile ? 460 : undefined,
+        width: "100%",
+      }}
     >
-      {items.map((item) => {
-        const { attributes } = item;
-        const { name, completed, description } = attributes || {};
-        return (
-          <Step key={name}>
-            <StepLabel
-              StepIconComponent={() => (
-                <ColorlibStepIcon active={completed} icon={undefined} />
-              )}
-            >
-              <Box sx={{ px: 1 }}>
-                <Typography>{name}</Typography>
-                <Box sx={{ fontWeight: 300, mt: 1.5 }}>{description}</Box>
-              </Box>
-            </StepLabel>
-          </Step>
-        );
-      })}
-    </Stepper>
+      <Stepper
+        alternativeLabel
+        activeStep={lastActiveItem}
+        connector={isMobile ? undefined : <ColorlibConnector />}
+        orientation={isMobile ? "vertical" : "horizontal"}
+      >
+        {items.map((item) => {
+          const { attributes } = item;
+          const { name, completed, description } = attributes || {};
+          return (
+            <Step key={name}>
+              <StepLabel
+                StepIconComponent={() => (
+                  <ColorlibStepIcon active={completed} icon={undefined} />
+                )}
+              >
+                <Box sx={{ px: 1 }}>
+                  <Typography>{name}</Typography>
+                  <Box sx={{ fontWeight: 300, mt: 1.5 }}>{description}</Box>
+                </Box>
+              </StepLabel>
+            </Step>
+          );
+        })}
+      </Stepper>
+    </Box>
   );
 };
 

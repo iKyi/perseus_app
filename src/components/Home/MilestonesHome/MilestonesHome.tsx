@@ -1,9 +1,10 @@
-import { Box, Container } from "@mui/material";
+import { Box, Button, Container } from "@mui/material";
 import SectionHeader from "components/Reusable/SectionHeader";
 import { sectionMarginBottom } from "constants/styleConstants";
 import usePageData from "hooks/usePageData";
 import ISectionHeaderStrapi from "utils/types/ISectionHeader";
 import MileStonesListings from "./MileStonesListings";
+import { Link as RouterLink } from "react-router-dom";
 
 export type MilestonesHomePropsType = { header: ISectionHeaderStrapi };
 
@@ -30,6 +31,19 @@ const MilestonesHome: React.FC<MilestonesHomePropsType> = ({ header }) => {
           <SectionHeader {...header} sx={{ maxWidth: 430, m: "0 auto" }} />
         </Box>
         <MileStonesListings items={summaryItems} />
+        <Box sx={{ textAlign: ["center", "center", "right"], pt: [6, 6, 8] }}>
+          <Button
+            component={RouterLink}
+            to={"/roadmap"}
+            sx={{
+              letterSpacing: [4.5, 4.5, 6.5],
+              color: "common.gray",
+              fontSize: [20, 20, 30],
+            }}
+          >
+            VIEW FULL ROADMAP
+          </Button>
+        </Box>
       </Container>
     </Box>
   );
