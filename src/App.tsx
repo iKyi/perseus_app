@@ -10,13 +10,14 @@ import SeoComp from "components/Reusable/Seo";
 import { useContext, useEffect } from "react";
 import { StrapiContext } from "providers/StrapiPublicProvider";
 import Footer from "components/Layout/Footer";
+import LuanchpadPageInner from "components/MintP/LuanchpadPageInner";
+import SnackbarProvider from "providers/SnackbarProvider";
+import BlockingSnabarsProvider from "providers/BlockingSnabarsProvider";
 
 const App: React.FC = () => {
   const { seo } = useContext(StrapiContext);
 
   const { pathname } = useLocation();
-
-  console.log(pathname);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -29,12 +30,15 @@ const App: React.FC = () => {
       <Routes>
         <Route element={<HomePage />} index />
         <Route element={<AboutUsPage />} path="/about-us" />
+        <Route element={<LuanchpadPageInner />} path="/mint" />
         <Route element={<NftsPage />} path="/nfts" />
         <Route element={<PortfolioPage />} path="/portfolio" />
         <Route element={<RoadmapPage />} path="/roadmap" />
         <Route element={<TokenPage />} path="/token" />
       </Routes>
       <Footer />
+      <SnackbarProvider />
+      <BlockingSnabarsProvider />
     </>
   );
 };
