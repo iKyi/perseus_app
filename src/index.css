@@ -69,3 +69,9 @@
   src: url("assets/fonts/poppins/Poppins-ExtraBold.ttf");
   font-weight: 800;
 }
+
+.respImg {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+}

@@ -33,10 +33,10 @@ export const NavLinks: IHeaderLink[] = [
     name: "PERSEUS TOKEN",
     url: "/token",
   },
-  {
-    name: "NFTs",
-    url: "/nfts",
-  },
+  // {
+  //   name: "NFTs",
+  //   url: "/nfts",
+  // },
   {
     name: "PORTFOLIO",
     url: "/portfolio",
@@ -95,6 +95,7 @@ const Header: React.FC<HeaderPropsType> = () => {
           left: "50%",
           transform: "translateX(-50%)",
           zIndex: 3,
+          bgcolor: isScrolledDown ? `rgba(0,0,0,0.75)` : undefined,
           backdropFilter: isScrolledDown
             ? "blur(8px) grayscale(0.3)"
             : undefined,

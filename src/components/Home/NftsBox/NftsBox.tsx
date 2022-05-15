@@ -18,8 +18,6 @@ const NftsBox: React.FC<NftsBoxPropsType> = () => {
   const { price: mintPrice } = tokenData ?? {};
   const { sectionHeader } = pageData ?? {};
 
-  //console.log(mintPrice);
-
   // *************** RENDER *************** //
   if (!pageData) return null;
   return (

@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router";
+import { Route, Routes, useLocation } from "react-router";
 import AboutUsPage from "./pages/AboutUsPage";
 import HomePage from "./pages/HomePage";
 import NftsPage from "./pages/NftsPage";
@@ -7,12 +7,20 @@ import RoadmapPage from "./pages/RoadmapPage";
 import TokenPage from "./pages/TokenPage";
 import Header from "components/Layout/Header";
 import SeoComp from "components/Reusable/Seo";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { StrapiContext } from "providers/StrapiPublicProvider";
 import Footer from "components/Layout/Footer";
 
 const App: React.FC = () => {
   const { seo } = useContext(StrapiContext);
+
+  const { pathname } = useLocation();
+
+  console.log(pathname);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [pathname]);
 
   return (
     <>

@@ -4,7 +4,7 @@ import { VerifiedUser } from "@mui/icons-material";
 import { centerFlex } from "utils/sxUtils";
 import { FONTS } from "lib/theme";
 
-const BulletItem: React.FC<{
+export const BulletItem: React.FC<{
   title: string;
   preTitle: string;
   sx?: SxProps;

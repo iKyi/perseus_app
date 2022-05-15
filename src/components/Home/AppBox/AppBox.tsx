@@ -9,6 +9,7 @@ export type AppBoxPropsType = {};
 
 const AppBox: React.FC<AppBoxPropsType> = () => {
   const { pageData } = usePageData("app-box");
+
   // *************** RENDER *************** //
   const {
     backgroundImage,

@@ -4,6 +4,8 @@ import { sectionMarginBottom } from "constants/styleConstants";
 import { FONTS } from "lib/theme";
 import { StrapiContext } from "providers/StrapiPublicProvider";
 import { ReactNode, useContext } from "react";
+import coming1 from "assets/images/tokenPage/tokenPageComingSoon/topBox2.png";
+import coming2 from "assets/images/tokenPage/tokenPageComingSoon/topBox3.png";
 
 const BgBox: React.FC<{ children?: ReactNode }> = ({ children }) => {
   return (
@@ -16,6 +18,9 @@ const BgBox: React.FC<{ children?: ReactNode }> = ({ children }) => {
           "linear-gradient(168.82deg, #FB37FF 1.7%, rgba(155, 111, 238, 0) 27.12%, rgba(123, 127, 234, 0) 61.28%, #1BB2DE 99.52%)",
         px: 3.5,
         py: 2.5,
+        minHeight: 160,
+        display: "flex",
+        alignItems: "center",
       }}
     >
       {children}
@@ -52,7 +57,7 @@ const TotalSupplyBox: React.FC<TotalSupplyBoxPropsType> = () => {
       <Grid container spacing={[2, 2, 4]}>
         <Grid item xs={12} md={4}>
           <BgBox>
-            <Stack spacing={1}>
+            <Stack spacing={1.5}>
               <StyledSmallTitle>Total Supply</StyledSmallTitle>
               <StyledValue>
                 {supply
@@ -66,7 +71,12 @@ const TotalSupplyBox: React.FC<TotalSupplyBoxPropsType> = () => {
           </BgBox>
         </Grid>
         <Grid item xs={12} md={4}>
-          <BgBox>
+          <img
+            src={coming1}
+            alt="coming soon"
+            style={{ width: "100%", height: "auto" }}
+          />
+          {/* <BgBox>
             <Stack spacing={1}>
               <StyledSmallTitle>Circulating Supply</StyledSmallTitle>
               <StyledValue>
@@ -78,10 +88,15 @@ const TotalSupplyBox: React.FC<TotalSupplyBoxPropsType> = () => {
                   .replace("$", "")}
               </StyledValue>
             </Stack>
-          </BgBox>
+          </BgBox> */}
         </Grid>
         <Grid item xs={12} md={4}>
-          <BgBox>
+          <img
+            src={coming2}
+            alt="coming soon"
+            style={{ width: "100%", height: "auto" }}
+          />
+          {/* <BgBox>
             <Stack spacing={1}>
               <StyledSmallTitle>Price</StyledSmallTitle>
               <StyledValue>
@@ -89,7 +104,7 @@ const TotalSupplyBox: React.FC<TotalSupplyBoxPropsType> = () => {
                 <small>$</small>
               </StyledValue>
             </Stack>
-          </BgBox>
+          </BgBox> */}
         </Grid>
       </Grid>
     </Box>

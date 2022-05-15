@@ -1,12 +1,14 @@
 import { Typography, SxProps } from "@mui/material";
 import { Box } from "@mui/system";
+import { ReactNode } from "react";
 import MarkdownParser from "./MarkdownParser";
 
 export type SectionHeaderPropsType = {
   preTitle?: string;
-  title: string;
+  title?: string;
   sx?: SxProps;
   description?: string;
+  children?: ReactNode;
 };
 
 const SectionHeader: React.FC<SectionHeaderPropsType> = ({
@@ -14,6 +16,7 @@ const SectionHeader: React.FC<SectionHeaderPropsType> = ({
   preTitle,
   sx,
   description,
+  children,
 }) => {
   // *************** RENDER *************** //
   return (
@@ -35,19 +38,23 @@ const SectionHeader: React.FC<SectionHeaderPropsType> = ({
           m: 0,
         }}
       >
-        {preTitle ?? "PERSEUS"}
+        {!preTitle || preTitle.length === 0 ? "PERSEUS" : preTitle}
       </Typography>
-      <Typography
-        variant="h3"
-        sx={{
-          fontWeight: 600,
-          fontSize: [26, 26, 40],
-          mt: [0.85, 0.85, 1.8],
-          mb: [1.5, 1.5, 2],
-        }}
-      >
-        {title}
-      </Typography>
+      {title && (
+        <Typography
+          variant="h3"
+          sx={{
+            fontWeight: 600,
+            fontSize: [26, 26, 40],
+            mt: [0.85, 0.85, 1.8],
+            mb: [1.5, 1.5, 2],
+          }}
+        >
+          {title}
+        </Typography>
+      )}
+
+      {children && <Box>{children}</Box>}
       {description && (
         <Typography
           component="span"

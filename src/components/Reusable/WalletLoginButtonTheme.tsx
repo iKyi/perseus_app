@@ -18,7 +18,7 @@ const StyledLoginButton = styled(WalletMultiButton, {
       ? `1px solid ${(theme.palette.common as any).gray}`
       : `1px solid ${theme.palette.common.white}`,
     backgroundColor: `rgba(0,0,0,0.16)`,
-    padding: "20px",
+    padding: "12px",
     fontWeight: 400,
     textTransform: "uppercase",
     fontFamily: FONTS.POPPINS,

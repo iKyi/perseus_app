@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import SectionHeader from "./SectionHeader";
 import { Link as RouterLink } from "react-router-dom";
 import pageHeaderBgImage from "assets/images/headerImage.png";
+import pageHeaderBgImage2 from "assets/images/headerImage2.png";
 
 export interface IPageHeaderButton {
   buttonText: string;
@@ -17,6 +18,7 @@ export type PageBgHeaderPropsType = {
   children?: ReactNode;
   buttonData?: IPageHeaderButton;
   bellowElements?: ReactNode;
+  altBg?: boolean;
 };
 
 const PageBgHeader: React.FC<PageBgHeaderPropsType> = ({
@@ -26,6 +28,7 @@ const PageBgHeader: React.FC<PageBgHeaderPropsType> = ({
   preTitle,
   buttonData,
   bellowElements,
+  altBg,
 }) => {
   const buttonisLink = buttonData?.buttonUrl?.includes("http");
   const LinkAttribute = buttonisLink
@@ -39,7 +42,7 @@ const PageBgHeader: React.FC<PageBgHeaderPropsType> = ({
         width: 1440,
         maxWidth: "100%",
         margin: "0 auto",
-        background: `url('${pageHeaderBgImage}')`,
+        background: `url('${!altBg ? pageHeaderBgImage : pageHeaderBgImage2}')`,
         backgroundSize: "cover",
         backgroundPosition: "center center",
         backgroundRepeat: "no-repeat",

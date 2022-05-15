@@ -1,27 +1,33 @@
-import { Box } from "@mui/material";
-import usePageData from "hooks/usePageData";
+import { Box, Grid } from "@mui/material";
+// import usePageData from "hooks/usePageData";
+// import CryptocurrencyEntry from "./CryptocurrencyEntry";
 import PortfolioSectionHeader from "./PortfolioSectionHeader";
-import CryptocurrencyEntry from "./CryptocurrencyEntry";
+import coinComingSoon from "assets/images/portfolio/coinComingSoon.png";
 
 export type CryptocurrenciesSectionPropsType = {};
 
 const CryptocurrenciesSection: React.FC<
   CryptocurrenciesSectionPropsType
 > = () => {
-  const { pageData } = usePageData("crytocurrencies", true);
+  // const { pageData } = usePageData("crytocurrencies", true);
 
-  const totalCrypto = pageData ? pageData.length : 0;
+  // const totalCrypto = pageData ? pageData.length : 0;
   // *************** RENDER *************** //
-  if (!pageData) return null;
+  // if (!pageData) return null;
   return (
     <Box>
       <PortfolioSectionHeader
         title="Cryptocurrencies"
-        items={[{ title: "Total Crypto", value: totalCrypto }]}
+        // items={[{ title: "Total Crypto", value: totalCrypto }]}
       />
-      {pageData.map((item: any) => {
+      {/* {pageData.map((item: any) => {
         return <CryptocurrencyEntry key={item.attributes.name} data={item} />;
-      })}
+      })} */}
+      <Grid container spacing={[2, 2, 4]}>
+        <Grid item xs={12} md={4}>
+          <img src={coinComingSoon} alt="coming soon" className="respImage" />
+        </Grid>
+      </Grid>
     </Box>
   );
 };
