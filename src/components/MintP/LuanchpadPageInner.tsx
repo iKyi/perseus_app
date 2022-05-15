@@ -2,7 +2,6 @@ import { Box, CircularProgress, Container } from "@mui/material";
 import { sectionMarginBottom } from "constants/styleConstants";
 import usePageData from "hooks/usePageData";
 import { ITeamMember } from "lib/interfaces/ITeamMember";
-import LaunchpadpageBottomTabsPart from "./subcomponents/LaunchpadpageBottomTabsPart";
 import LuanchpadpageTopPart from "./subcomponents/LuanchpadpageTopPart";
 
 export type IMintDataType = {
@@ -18,7 +17,7 @@ export type IMintDataType = {
   twitter?: string;
   siteUrl?: string;
   tags?: any;
-  roadmap?: string;
+  roadMap?: string;
   whitepaperUrl?: string;
   candyMachineId: string;
   whitelistOne: boolean;
@@ -39,6 +38,7 @@ export type LuanchpadPageInnerPropsType = {};
 
 const LuanchpadPageInner: React.VFC<LuanchpadPageInnerPropsType> = () => {
   const { pageData } = usePageData("mint-data");
+  console.log(pageData);
   // *************** RENDER *************** //
   if (!pageData) {
     return (
@@ -68,7 +68,7 @@ const LuanchpadPageInner: React.VFC<LuanchpadPageInnerPropsType> = () => {
       <Container>
         <Box sx={{ pt: [2, 2, 4] }}>
           <LuanchpadpageTopPart data={pageData} />
-          <LaunchpadpageBottomTabsPart data={pageData} />
+          {/* <LaunchpadpageBottomTabsPart data={pageData} /> */}
         </Box>
       </Container>
     </Box>

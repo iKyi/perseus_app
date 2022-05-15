@@ -44,7 +44,7 @@ export type LaunchpadpageBottomTabsPartPropsType = {
 
 const LaunchpadpageBottomTabsPart: React.VFC<
   LaunchpadpageBottomTabsPartPropsType
-> = ({ data: { roadmap, teamMembers } }) => {
+> = ({ data: { roadMap, teamMembers } }) => {
   const [value, setValue] = useState(0);
   const localMembers =
     teamMembers?.data?.map((item) => item.attributes) ?? null;
@@ -64,10 +64,8 @@ const LaunchpadpageBottomTabsPart: React.VFC<
     backgroundColor: `rgba(0,0,0,0.16)`,
   };
 
-  console.log(roadmap);
-
   // *************** RENDER *************** //
-  if (!localMembers && !roadmap) return null;
+  if (!localMembers && !roadMap) return null;
   return (
     <SquareBorderBox
       sx={{
@@ -82,7 +80,7 @@ const LaunchpadpageBottomTabsPart: React.VFC<
         scrollButtons="auto"
         variant="scrollable"
       >
-        {roadmap && (
+        {roadMap && (
           <Tab
             sx={{
               ...innerTabStyles,
@@ -119,7 +117,7 @@ const LaunchpadpageBottomTabsPart: React.VFC<
           />
         )}
       </Tabs>
-      {roadmap && (
+      {roadMap && (
         <TabPanel value={value} index={0}>
           <Box
             sx={{
@@ -129,7 +127,7 @@ const LaunchpadpageBottomTabsPart: React.VFC<
               fontWeight: 300,
             }}
           >
-            <MarkdownParser>{roadmap}</MarkdownParser>
+            <MarkdownParser>{roadMap}</MarkdownParser>
           </Box>
         </TabPanel>
       )}
