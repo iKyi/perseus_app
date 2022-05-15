@@ -25,7 +25,7 @@ const CryptocurrenciesSection: React.FC<
       })} */}
       <Grid container spacing={[2, 2, 4]}>
         <Grid item xs={12} md={4}>
-          <img src={coinComingSoon} alt="coming soon" className="respImage" />
+          <img src={coinComingSoon} alt="coming soon" className="respImg" />
         </Grid>
       </Grid>
     </Box>

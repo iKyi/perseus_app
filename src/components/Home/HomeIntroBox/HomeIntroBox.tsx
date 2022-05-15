@@ -47,14 +47,16 @@ const HomeIntroBox: React.FC<HomeIntroBoxPropsType> = ({
         <Grid container spacing={[0, 0, 3]} alignItems="center">
           {introBoxText && (
             <Grid item sm={12}>
-              <SectionHeader
-                {...(introBoxText as ISectionHeaderStrapi)}
-                sx={{
-                  width: 600,
-                  maxWidth: "100%",
-                  margin: "0 auto",
-                }}
-              />
+              <Box sx={{ maxWidth: "100%", width: "100%", overflow: "hidden" }}>
+                <SectionHeader
+                  {...(introBoxText as ISectionHeaderStrapi)}
+                  sx={{
+                    width: ["100%", "100%", 600],
+                    maxWidth: "100%",
+                    margin: "0 auto",
+                  }}
+                />
+              </Box>
             </Grid>
           )}
 
@@ -62,7 +64,11 @@ const HomeIntroBox: React.FC<HomeIntroBoxPropsType> = ({
             {tokenSectionText && (
               <SectionHeader
                 {...(tokenSectionText as ISectionHeaderStrapi)}
-                sx={{ textAlign: "left", width: 500, maxWidth: "100%" }}
+                sx={{
+                  textAlign: "left",
+                  maxWidth: "100%",
+                  width: ["100%", "100%", 500],
+                }}
               >
                 <Box>
                   {supply && (
@@ -123,6 +129,7 @@ const HomeIntroBox: React.FC<HomeIntroBoxPropsType> = ({
                 width: 220,
                 maxWidth: "100%",
                 height: 52,
+                mb: [3, 3, 0],
               }}
             >
               Trade Perseus

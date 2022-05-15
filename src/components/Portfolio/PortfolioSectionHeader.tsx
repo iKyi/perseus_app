@@ -1,4 +1,5 @@
 import { Box, Typography, Link as MUILink, Divider } from "@mui/material";
+import { FONTS } from "lib/theme";
 
 const ItemEntry: React.FC<{ title: string; value: string }> = ({
   title,
@@ -45,7 +46,9 @@ const PortfolioSectionHeader: React.FC<PortfolioSectionHeaderPropsType> = ({
           display: "flex",
           alignItems: "flex-end",
           m: 0,
-          fontSize: [26, 26, 32],
+          fontSize: [24, 24, 28],
+          fontWeight: 300,
+          fontFamilt: FONTS.POPPINS,
         }}
       >
         <Typography variant="h2" fontSize="inherit" sx={{ fontWeight: 400 }}>

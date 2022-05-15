@@ -41,7 +41,7 @@ const ProjectsSection: React.FC<ProjectsSectionPropsType> = () => {
         //   { title: "Solana Projects", value: solanaProjects },
         // ]}
       />
-      <img src={projectsComingSoon} alt="coming soon" />
+      <img src={projectsComingSoon} alt="coming soon" className="respImg" />
       {/* {pageData.map((item: any) => {
         return <ProjectListEntry key={item.attributes.name} data={item} />;
       })} */}
