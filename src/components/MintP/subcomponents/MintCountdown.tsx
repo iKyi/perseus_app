@@ -63,9 +63,9 @@ export const MintCountdown: React.FC<MintCountdownProps> = ({
             display: "flex",
             padding: theme.spacing(0),
             "& > *": {
-              margin: theme.spacing(0.4),
-              width: theme.spacing(6),
+              margin: theme.spacing(0.2),
               height: theme.spacing(6),
+              flex: 1,
               display: "flex",
               flexDirection: "column",
               alignContent: "center",
