@@ -77,7 +77,6 @@ export const awaitTransactionSignatureConfirmation = async (
     confirmations: 0,
     err: null,
   };
-  let subId = 0;
   status = await new Promise(async (resolve, reject) => {
     setTimeout(() => {
       if (done) {

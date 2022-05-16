@@ -123,6 +123,7 @@ const HeaderPart: React.FC<{
 }) => {
   const { socials } = useContext(StrapiContext);
   const { twitter, discord } = socials ?? {};
+  const { hideMintCountdown } = useContext(StrapiContext);
 
   const { displayBoxContent } = useDisplayMintState(data);
   const showNative =
@@ -138,7 +139,7 @@ const HeaderPart: React.FC<{
         <Grid item xs={12} sm={6} lg={3}>
           <ValueBox title="Mint price" value={`${mintPrice} SOL`} />
         </Grid>
-        {candyMachine && (
+        {candyMachine && !hideMintCountdown && (
           <Grid item xs={12} sm={6} lg={3}>
             {!showNative ? (
               <DisplayStateBox content={displayBoxContent} />
@@ -163,7 +164,15 @@ const HeaderPart: React.FC<{
             )}
           </Grid>
         )}
-        <Grid item xs={12} sm={6} lg={3}>
+        <Grid
+          item
+          xs={12}
+          sm={6}
+          lg={3}
+          sx={{
+            ml: [undefined, undefined, "auto"],
+          }}
+        >
           <Box
             sx={{
               textAlign: "right",
