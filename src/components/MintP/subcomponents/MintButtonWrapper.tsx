@@ -24,6 +24,7 @@ export type MintButtonWrapperPropsType = {
   connection: Connection;
   rpcHost: string;
   data: IMintDataType;
+  isValidBalance?: boolean;
 };
 
 const MintButtonWrapper: React.VFC<MintButtonWrapperPropsType> = ({
@@ -37,6 +38,7 @@ const MintButtonWrapper: React.VFC<MintButtonWrapperPropsType> = ({
   connection,
   rpcHost,
   data: pageData,
+  isValidBalance = false,
 }) => {
   const dispatch = useAppDispatch();
   const wallet = useWallet();
@@ -150,7 +152,9 @@ const MintButtonWrapper: React.VFC<MintButtonWrapperPropsType> = ({
                   isMinting={isUserMinting}
                   setIsMinting={(val) => setIsUserMinting(val)}
                   onMint={onMint}
-                  isActive={isActive || (isPresale && isWhitelistUser)}
+                  isActive={
+                    isActive || (isPresale && isWhitelistUser && isValidBalance)
+                  }
                   data={pageData}
                 />
               </GatewayProvider>
@@ -160,7 +164,9 @@ const MintButtonWrapper: React.VFC<MintButtonWrapperPropsType> = ({
                 isMinting={isUserMinting}
                 setIsMinting={(val) => setIsUserMinting(val)}
                 onMint={onMint}
-                isActive={isActive || (isPresale && isWhitelistUser)}
+                isActive={
+                  isActive || (isPresale && isWhitelistUser && isValidBalance)
+                }
                 data={pageData}
               />
             )}

@@ -38,7 +38,6 @@ export type LuanchpadPageInnerPropsType = {};
 
 const LuanchpadPageInner: React.VFC<LuanchpadPageInnerPropsType> = () => {
   const { pageData } = usePageData("mint-data");
-  console.log(pageData);
   // *************** RENDER *************** //
   if (!pageData) {
     return (

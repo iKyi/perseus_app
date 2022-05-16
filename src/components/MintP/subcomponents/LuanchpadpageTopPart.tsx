@@ -222,6 +222,7 @@ const LuanchpadpageTopPart: React.VFC<LuanchpadpageTopPartPropsType> = ({
     isWhitelistUser,
     isPresale,
     connection: parsedConnection,
+    isValidBalance,
   } = useMintConnectionActions({
     candyMachineId: candyMachineIdParsed,
     connection: connection,
@@ -298,15 +299,8 @@ const LuanchpadpageTopPart: React.VFC<LuanchpadpageTopPartPropsType> = ({
             connection={parsedConnection}
             rpcHost={rpcHost}
             data={data}
+            isValidBalance={isValidBalance}
           />
-          {/* <MintButton
-            isActive={isActive}
-            isMinting={isUserMinting}
-            onMint={onMint}
-            candyMachine={candyMachine}
-            setIsMinting={setIsUserMinting}
-          /> */}
-          {/* <MintButtonLaunch mintAction={onMint} data={data} /> */}
         </Grid>
       </Grid>
     </SquareBorderBox>
