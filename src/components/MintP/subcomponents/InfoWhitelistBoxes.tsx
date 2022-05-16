@@ -1,5 +1,5 @@
 import { SxProps, Box, Typography } from "@mui/material";
-import React, { useMemo } from "react";
+import React from "react";
 import GreenRemainingLine from "./GreenRemainingLine";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { IMintDataType } from "../LuanchpadPageInner";
@@ -41,40 +41,9 @@ const InfoWhitelistBoxes: React.VFC<InfoWhitelistBoxesPropsType> = ({
   data,
   itemsRemaining,
 }) => {
-  const {
-    whitelistOne,
-    whitelistOneText,
-    whitelistThree,
-    whitelistThreeText,
-    whitelistTwo,
-    whitelistTwoText,
-    publicMint,
-    mintPrice,
-    supply,
-  } = data;
+  const { publicMint, mintPrice, supply } = data;
 
   const { connected } = useWallet();
-
-  const mintsText = useMemo(() => {
-    let text = "NONE";
-    const mints = [whitelistOne, whitelistTwo, whitelistThree];
-    if (!publicMint && mints.some((item) => item)) {
-      text = "WHITELIST ";
-      mints.forEach((item, index: number) => {
-        if (item) {
-          if (text === "WHITELIST ") {
-            text += ` ${index + 1}`;
-          } else {
-            text += ` + ${index + 1}`;
-          }
-        }
-      });
-    }
-    if (publicMint) {
-      text = "PUBLIC";
-    }
-    return text;
-  }, [whitelistOne, whitelistThree, whitelistTwo, publicMint]);
 
   // *************** RENDER *************** //
   return (
@@ -89,22 +58,10 @@ const InfoWhitelistBoxes: React.VFC<InfoWhitelistBoxesPropsType> = ({
           p: [1, 1, 2],
         }}
       >
-        <DarkValueBox title="WHITELIST #1" value={whitelistOneText} />
-        <DarkValueBox title="WHITELIST #2" value={whitelistTwoText} />
-        <DarkValueBox title="WHITELIST #3" value={whitelistThreeText} />
-        <Box sx={{ m: [1, 1, 0], ml: [1, 1, "auto"], pl: 2 }}>MINTED</Box>
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          alignItems: "center",
-          mb: 2,
-          bgcolor: `rgba(0,0,0,0.16)`,
-          p: [1, 1, 2],
-        }}
-      >
-        <DarkValueBox title="OPEN MINT" value={mintsText} />
+        <DarkValueBox
+          title="OPEN MINT"
+          value={`${publicMint ? "PRIVATE SALE" : "None"}`}
+        />
         <DarkValueBox title="PRICE" value={`${mintPrice} SOL`} />
         {itemsRemaining && itemsRemaining !== 0 && connected ? (
           <DarkValueBox title="MINTED" value={`${itemsRemaining}/${supply}`} />
