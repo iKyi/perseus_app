@@ -6,50 +6,68 @@ import {
   SYSVAR_RENT_PUBKEY,
   TransactionInstruction,
 } from "@solana/web3.js";
-export const toDate = (value: any) => {
+
+export const toDate = (value?: anchor.BN) => {
   if (!value) {
     return;
   }
+
   return new Date(value.toNumber() * 1000);
 };
+
 const numberFormater = new Intl.NumberFormat("en-US", {
   style: "decimal",
   minimumFractionDigits: 2,
   maximumFractionDigits: 2,
 });
+
 export const formatNumber = {
-  format: (val: any) => {
+  format: (val?: number) => {
     if (!val) {
       return "--";
     }
+
     return numberFormater.format(val);
   },
-  asNumber: (val: any) => {
+  asNumber: (val?: anchor.BN) => {
     if (!val) {
       return undefined;
     }
+
     return val.toNumber() / LAMPORTS_PER_SOL;
   },
 };
 
 export const SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID =
   new anchor.web3.PublicKey("ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL");
+
 export const CIVIC = new anchor.web3.PublicKey(
   "gatem74V238djXdzWnJf94Wo1DcnuGkfijbf3AuBhfs"
 );
-export const getAtaForMint = async (mint: any, buyer: any) => {
+
+export const getAtaForMint = async (
+  mint: anchor.web3.PublicKey,
+  buyer: anchor.web3.PublicKey
+): Promise<[anchor.web3.PublicKey, number]> => {
   return await anchor.web3.PublicKey.findProgramAddress(
     [buyer.toBuffer(), TOKEN_PROGRAM_ID.toBuffer(), mint.toBuffer()],
     SPL_ASSOCIATED_TOKEN_ACCOUNT_PROGRAM_ID
   );
 };
-export const getNetworkExpire = async (gatekeeperNetwork: any) => {
+
+export const getNetworkExpire = async (
+  gatekeeperNetwork: anchor.web3.PublicKey
+): Promise<[anchor.web3.PublicKey, number]> => {
   return await anchor.web3.PublicKey.findProgramAddress(
     [gatekeeperNetwork.toBuffer(), Buffer.from("expire")],
     CIVIC
   );
 };
-export const getNetworkToken = async (wallet: any, gatekeeperNetwork: any) => {
+
+export const getNetworkToken = async (
+  wallet: anchor.web3.PublicKey,
+  gatekeeperNetwork: anchor.web3.PublicKey
+): Promise<[anchor.web3.PublicKey, number]> => {
   return await anchor.web3.PublicKey.findProgramAddress(
     [
       wallet.toBuffer(),
@@ -60,11 +78,12 @@ export const getNetworkToken = async (wallet: any, gatekeeperNetwork: any) => {
     CIVIC
   );
 };
+
 export function createAssociatedTokenAccountInstruction(
-  associatedTokenAddress: string,
-  payer: any,
-  walletAddress: string,
-  splTokenMintAddress: String
+  associatedTokenAddress: anchor.web3.PublicKey,
+  payer: anchor.web3.PublicKey,
+  walletAddress: anchor.web3.PublicKey,
+  splTokenMintAddress: anchor.web3.PublicKey
 ) {
   const keys = [
     {

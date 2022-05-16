@@ -19,6 +19,8 @@ interface BlockhashAndFeeCalculator {
   feeCalculator: FeeCalculator;
 }
 
+export const DEFAULT_TIMEOUT = 60000;
+
 export const getErrorForTransaction = async (
   connection: Connection,
   txid: string
@@ -346,8 +348,6 @@ export const getUnixTs = () => {
   return new Date().getTime() / 1000;
 };
 
-const DEFAULT_TIMEOUT = 120000;
-
 export async function sendSignedTransaction({
   signedTransaction,
   connection,
@@ -539,8 +539,9 @@ async function awaitTransactionSignatureConfirmation(
     }
   });
 
-  if ((connection as any)?._signatureSubscriptions?.[subId])
-    connection.removeSignatureListener(subId);
+  //@ts-ignore
+  if (connection._signatureSubscriptions?.[subId])
+    connection?.removeSignatureListener(subId);
   done = true;
   console.log("Returning status", status);
   return status;
