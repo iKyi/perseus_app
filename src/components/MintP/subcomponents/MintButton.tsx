@@ -70,7 +70,7 @@ export const MintButton = ({
       candyMachine?.state.isPresale ||
       candyMachine?.state.isWhitelistOnly
     ) {
-      return "PRESALE MINT";
+      return "PRIVATE SALE MINT";
     } else if (cannotMintBecauseNotOnWhitelist) {
       return "WALLET NOT WHITELISTED";
     } else if (saleEnded) {

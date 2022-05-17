@@ -1,4 +1,4 @@
 const getMineSpeed = (value: number) => {
-  return `${value} PST/h`;
+  return `${value} PT/h`;
 };
 export default getMineSpeed;

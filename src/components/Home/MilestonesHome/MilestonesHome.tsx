@@ -12,7 +12,7 @@ const MilestonesHome: React.FC<MilestonesHomePropsType> = ({ header }) => {
   const { pageData } = usePageData("milestones", true);
 
   const summaryItems =
-    pageData && pageData.length > 3 ? pageData.slice(-3) : pageData;
+    pageData && pageData.length > 3 ? pageData.slice(-4, -1) : pageData;
   // *************** RENDER *************** //
   if (!summaryItems) return null;
   return (

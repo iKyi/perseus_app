@@ -132,7 +132,7 @@ const HomeIntroBox: React.FC<HomeIntroBoxPropsType> = ({
                 mb: [3, 3, 0],
               }}
             >
-              Trade Perseus
+              Coming Soon
             </Button>
           </Grid>
           <Grid item sm={12} md={6} alignItems="center">
