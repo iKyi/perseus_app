@@ -33,10 +33,10 @@ export const NavLinks: IHeaderLink[] = [
     name: "PERSEUS TOKEN",
     url: "/token",
   },
-  {
-    name: "Mint",
-    url: "/mint",
-  },
+  // {
+  //   name: "Mint",
+  //   url: "/mint",
+  // },
   // {
   //   name: "NFTs",
   //   url: "/nfts",
